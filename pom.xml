@@ -11,6 +11,7 @@
 		<module>orgwalkerljl-smart-dao</module>
 		<module>orgwalkerljl-smart-service</module>
 		<module>orgwalkerljl-smart-mvc</module>
+		<module>orgwalkerljl-smart-web</module>
 	</modules>
 
 	<properties>

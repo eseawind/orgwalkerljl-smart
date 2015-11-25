@@ -10,7 +10,8 @@ import org.walkerljl.smart.service.DefaultBaseService;
 
 /**
  * UserService
- * @author lijunlin<walkerljl@qq.com>
+ * 
+ * @author lijunlin
  */
 public interface UserService extends DefaultBaseService<User, Long> {
 

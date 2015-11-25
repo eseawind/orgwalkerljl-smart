@@ -7,6 +7,7 @@ package org.walkerljl.smart.service.sys.impl;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Service;
 import org.walkerljl.commons.collection.ListUtils;
 import org.walkerljl.smart.dao.DefaultBaseDao;
 import org.walkerljl.smart.dao.sys.UserDao;
@@ -20,6 +21,7 @@ import org.walkerljl.smart.service.sys.UserService;
  * 
  * @author lijunlin
  */
+@Service("userService")
 public class UserServiceImpl extends DefaultBaseServiceImpl<User, Long> implements UserService {
 
 	@Resource private UserDao userDao;
