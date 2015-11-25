@@ -107,7 +107,7 @@ public class DefaultMvcSupporter implements MvcSupporter {
 		if (StringUtils.isEmpty(userId)) {
 			return false;
 		}
-		Set<String> administrators = ConfiguratorFactory.getInstance().getPropertyAsStringSet("administrators", ",");
+		Set<String> administrators = ConfiguratorFactory.getInstance().getPropertyAsSet(String.class, "administrators", ",");
 		return administrators != null && administrators.contains(userId);
 	}
 
