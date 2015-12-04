@@ -14,83 +14,67 @@ import java.util.List;
  * @author lijunlin
  */
 public interface DefaultBaseDao<T, KEY extends Serializable> extends BaseDao {
-	
-	/**
-     * 添加对象
-     * @param t
-     * @return
-     */
-    int insert(T t);
     
     /**
      * 添加对象
-     * @param list
+     * @param entities
      * @return
      */
-    int insert(List<T> list);
+    @SuppressWarnings("unchecked")
+	int insert(T... entities);
     
     /**
      * 删除对象,主键集合
      * @param keys
      * @return
      */
-    int deleteByKeys(List<KEY> keys);
+    @SuppressWarnings("unchecked")
+	int deleteByKeys(KEY... keys);
     
     /**
      * 删除对象,只要不为NULL与空则为条件
-     * @param t
+     * @param condition
      * @return
      */
-    int delete(T t);
-    
-    /**
-    * 修改对象状态
-    * @param keys 主键集合
-    * @param status
-    * @return
-    */
-    int updateStatusByKeys(List<KEY> keys, Integer status); 
+    int delete(T condition);
 
-    
     /**
      * 更新对象,条件主键
-     * @param t
+     * @param entity
      * @return
      */
-    int updateByKey(T t);
-
+    @SuppressWarnings("unchecked")
+    int updateByKeys(T entity, KEY... keys);
+    
     /**
-     * 查询对象,条件主键
-     * @param key
+     * 更新对象
+     * @param entity 待更新对象
+     * @param condition 更新条件,不为空字段为条件
      * @return
      */
-    T selectByKey(KEY key);
+    int update(T entity, T condition);
     
     /**
      * 查询对象集合,主键集合
      * @param keys
      * @return
      */
-    List<T> selectListByKeys(List<KEY> keys);
+    @SuppressWarnings("unchecked")
+    List<T> selectListByKeys(KEY... keys);
     
     /**
      * 查询对象,只要不为NULL与空则为条件
-     * @param t
+     * @param condition
+     * @param currentPage 当前页码
+     * @param pageSize 每页大小
      * @return
      */
-    List<T> selectList(T t);
+    List<T> selectList(T condition, int currentPage, int pageSize);
     
     /**
      * 查询对象总数,只要不为NULL与空则为条件
-     * @param t
+     * @param condition
      * @return
      */
-    int selectListCount(T t);
-    
-    /**
-     * 获取分页数据,只要不为NULL与空则为条件
-     * @param t
-     * @return
-     */
-    QueryResult<T> selectQueryResult(T t);
+    int selectListCount(T condition);
 }

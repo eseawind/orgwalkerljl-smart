@@ -52,7 +52,8 @@ public abstract class DefaultBaseServiceImpl<T, KEY extends Serializable> extend
 	
 	@Override
 	public int insert(List<T> list) {
-	    return getDao().insert(list);
+	    //return getDao().insert(list);
+		return 0;
 	}
 	
 	@Override
@@ -71,7 +72,8 @@ public abstract class DefaultBaseServiceImpl<T, KEY extends Serializable> extend
 	
 	@Override
 	public int deleteByKeys(List<KEY> keys) {
-	    return getDao().deleteByKeys(keys);
+	    //return getDao().deleteByKeys(keys);
+		return 0;
 	}
 	
 	@Override
@@ -131,7 +133,8 @@ public abstract class DefaultBaseServiceImpl<T, KEY extends Serializable> extend
 	    if (condition == null) {
 	    	return 0;
 	    }
-		return getDao().updateByKey(condition);
+		//return getDao().updateByKey(condition);
+	    return 0;
 	}
 	
 	@Override
@@ -179,17 +182,20 @@ public abstract class DefaultBaseServiceImpl<T, KEY extends Serializable> extend
 	
 	@Override
 	public T selectByKey(KEY key) {
-		return getDao().selectByKey(key);
+		//return getDao().selectByKey(key);
+		return null;
 	}
 	
 	@Override
 	public List<T> selectListByKeys(List<KEY> keys) {
-		return getDao().selectListByKeys(keys);
+		//return getDao().selectListByKeys(keys);
+		return null;
 	}
 	
 	@Override
 	public List<T> selectList(T condition) {
-		return condition == null ? null : getDao().selectList(condition);
+		//return condition == null ? null : getDao().selectList(condition);
+		return null;
 	}
 	
 	@Override

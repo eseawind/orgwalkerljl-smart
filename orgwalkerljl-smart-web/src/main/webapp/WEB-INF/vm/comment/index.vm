@@ -1,0 +1,21 @@
+<form action="$!{contextPath}/" method="post" id="$!{formName}">
+#parse("common/pagination/param.vm")<!-- 公用分页参数-->
+#foreach($rowModel in $!{model.result})
+<div style="magin-top:20px;#if($!{velocityCount} % 2 != 0) background-color:#F6F6F6;#end">
+	<span style="margin-bottom:2px;">$!{rowModel.createUserName}发表于$!dateUtils.dateFormatDateTime($!{rowModel.createDate})</span>
+	<br/>
+	<p>$!{rowModel.content}</p>
+</div>
+#end
+</form>
+#parse("common/pagination/toolbar-nofunction.vm") <!-- 公用分页工具条-->
+
+<script>	
+	var gotoPage = function(pageNo) {
+		$("#currentPage").val(pageNo);
+		var url = "$!{contextPath}/comment/selectPage";
+		var params = $("#" + $("#formName").val()).serialize();
+		var targetDomId = "commentDiv";
+		JARVIS.loadPage(url, params, targetDomId);
+	};
+</script>

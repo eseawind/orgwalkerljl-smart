@@ -1,0 +1,32 @@
+<div class="col-md-10 col-md-offset-1">
+<form action="$!{contextPath}/" method="post" id="$!{formName}">
+  <input type="hidden" id="formName" name="formName" value="$!{formName}" />
+  <input type="hidden" id="currentPage" name="currentPage" value="$!{page.currentPage}" />
+  <input type="hidden" id="pageSize" name="pageSize" value="$!{page.pageSize}" />
+  <input type="hidden" id="totalCount" name="totalCount" value="$!{page.totalCount}" />
+  <input type="hidden" id="articleTypeId" name="typeId" />
+  <input type="hidden" id="searchText" name="searchText" />
+#foreach($rowModel in $!{page.result})
+<div >
+  <h3>$!{rowModel.title}</h3>
+  <p>
+  	作者:<a href="#">&nbsp;&nbsp;$!{rowModel.createUserName}</a>
+  	&nbsp;&nbsp;$!dateUtils.dateFormatDateTime($!{rowModel.createDate})
+  </p>
+
+  <p>$!{rowModel.content}</p>
+  <tr/>
+  	阅读($!{rowModel.readCount}) | 评论($!{rowModel.commentCount}) 
+   		| 赞($!{rowModel.praiseCount}) 
+   		| 收藏($!{rowModel.collectCount}) <a href="javascript:void(0);" onclick="blog.article.otherRead('$!{rowModel.id}');"> 阅读全文</a>
+  <a href="javascript:void(0);" onclick="blog.article.praise('${rowModel.id}', '$!{contextPath}/');">点赞</a>
+  | <a href="javascript:void(0);" onclick="blog.article.collect('${rowModel.id}', '$!{contextPath}/');">收藏</a>
+  <hr/>     
+</div><!-- /.blog-post -->
+#end
+</form>
+
+#parse("common/page.vm") 
+</div>
+
+<script src="$!{localStaticRes}/js/article.js?v=$!{v}"></script>

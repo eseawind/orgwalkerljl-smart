@@ -34,7 +34,9 @@ public class RoutingDataSource extends AbstractRoutingDataSource {
 	protected DataSource loadBalance() {
 		int index = Math.abs(count.incrementAndGet()) % getReadDsSize();
 		DataSource dataSource = getResolvedSlaveDataSources().get(index);
-		//LOGGER.debug("ooo Using Slave {} DataSource [{}]", index, dataSource.toString());
+		if (LOGGER.isDebugEnabled()) {
+			LOGGER.debug(String.format("Using Master DataSource [%s]", dataSource.toString()));
+		}
 		return dataSource;
 	}
 }

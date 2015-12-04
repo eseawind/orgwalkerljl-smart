@@ -11,7 +11,7 @@ import org.walkerljl.smart.domain.sys.User;
 /**
  * 用户数据访问层接口
  * 
- * @author lijunlin<walkerljl@qq.com>
+ * @author lijunlin
  */
 public interface UserDao extends DefaultBaseDao<User, Long> {
 

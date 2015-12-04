@@ -19,6 +19,7 @@
 		<org.walkerljl.commons.version>1.0.1-SNAPSHOT</org.walkerljl.commons.version>
 		<org.walkerljl.log.version>1.0.0-SNAPSHOT</org.walkerljl.log.version>
 		<org.walkerljl.config.version>1.0.0-SNAPSHOT</org.walkerljl.config.version>
+		<org.walkerljl.db.version>1.0.0-SNAPSHOT</org.walkerljl.db.version>
 		<org.walkerljl.sso.sdk.version>0.0.1-SNAPSHOT</org.walkerljl.sso.sdk.version>
 		<spring.version>4.2.2.RELEASE</spring.version>
 		<cglib.version>2.2.2</cglib.version>
@@ -57,6 +58,11 @@
 				<groupId>org.walkerljl.config</groupId>
 				<artifactId>orgwalkerljl-config-core</artifactId>
 				<version>${org.walkerljl.config.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.walkerljl.db</groupId>
+				<artifactId>orgwalkerljl-db-core</artifactId>
+				<version>${org.walkerljl.db.version}</version>
 			</dependency>
 			<!-- orgwalkerljl sso -->
 			<dependency>

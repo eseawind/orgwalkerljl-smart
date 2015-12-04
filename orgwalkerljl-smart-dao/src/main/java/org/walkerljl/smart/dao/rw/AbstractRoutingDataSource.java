@@ -90,7 +90,9 @@ abstract class AbstractRoutingDataSource extends AbstractDataSource implements I
 	}
 
 	protected DataSource getResolvedMasterDataSource() {
-		//LOGGER.debug("ooo Using Master DataSource [{}]", resolvedMasterDataSource.toString());
+		if (LOGGER.isDebugEnabled()) {
+			LOGGER.debug(String.format("Using Master DataSource [%s]", resolvedMasterDataSource.toString()));
+		}
 		return resolvedMasterDataSource;
 	}
 
@@ -114,7 +116,7 @@ abstract class AbstractRoutingDataSource extends AbstractDataSource implements I
 		try {
 			ds.getConnection().close();// 测试数据源连接是否有效
 		} catch (Exception e) {
-			//LOGGER.warn("Invalid DataSource:" + dataSource.toString() , e.getMessage());
+			LOGGER.warn("Invalid DataSource:" + dataSource.toString(), e);
 			return null;
 		}
 		return ds;

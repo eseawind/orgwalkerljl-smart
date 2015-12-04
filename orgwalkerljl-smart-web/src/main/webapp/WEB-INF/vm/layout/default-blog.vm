@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>$!{appName}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="$!{staticRes}/plugin/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="$!{staticRes}/css/blog/blog.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="$!{staticRes}/plugin/ie/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="$!{staticRes}/plugin/bootstrap/3.3.5/ie/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="$!{staticRes}/plugin/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="$!{staticRes}/plugin/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="blog-masthead navbar-fixed-top">
+      <div class="container">
+        <nav class="blog-nav">
+          #foreach($articleType in $articleTypes)
+          <a class="blog-nav-item" href="#">$!{articleType.name}</a>
+          #end
+          #if($!{isLogin}) 
+          	<a class="blog-nav-item navbar-right" href="#">我</a>
+          #else
+          	<a class="blog-nav-item navbar-right" href="javascript:void(0);" 
+          		onclick="window.location.href='$!{contextPath}/signIn';">登录</a>
+          #end
+        </nav>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="blog-header">
+        <h1 class="blog-title">$!{appName}</h1>
+        <p class="lead blog-description">TYoung 博客</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+           <!-- Content-->
+   		   $!{screen_content}
+        </div><!-- /.blog-main -->
+
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+            <p></p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">2015-08</a></li>
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>链接</h4>
+            <ol class="list-unstyled">
+              <li><a href="#">GitHub</a></li>
+            </ol>
+          </div>
+   		</div><!-- /.blog-sidebar -->
+   		
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+    <!-- footer -->
+    #parse("common/footer.vm") 
+
+    <!-- Bootstrap core JavaScript
+     ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="$!{staticRes}/plugin/jquery/1.11.3/jquery.min.js"></script>
+    <script src="$!{staticRes}/plugin/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="$!{staticRes}/plugin/bootstrap/3.3.5/ie/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

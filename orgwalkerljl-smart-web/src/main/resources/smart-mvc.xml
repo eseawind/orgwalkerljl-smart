@@ -29,7 +29,7 @@
 	<!-- 权限校验器 -->
 	<bean id="authenticator" class="org.walkerljl.smart.auth.DefaultAuthenticator"/>
 	<!-- MVC Supporter -->
-	<bean id="mvcSupporter" class="org.walkerljl.smart.web.CustomizedMvcSupporter"/>
+	<bean id="mvcSupporter" class="org.walkerljl.smart.web.DefaultMvcSupporter"/>
 	
 	<!-- WEB异常解析处理 -->
 	<bean id="globalExceptionResolver" class="org.walkerljl.smart.mvc.interceptor.GlobalExceptionResolver">

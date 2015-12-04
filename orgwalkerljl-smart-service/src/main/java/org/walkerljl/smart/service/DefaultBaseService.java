@@ -15,7 +15,7 @@ import org.walkerljl.smart.enums.Status;
 /**
  * DefaultBaseService
  * 
- * @author lijunlin<walkerljl@qq.com>
+ * @author lijunlin
  */
 public interface DefaultBaseService<T, KEY extends Serializable> extends BaseService {
 
