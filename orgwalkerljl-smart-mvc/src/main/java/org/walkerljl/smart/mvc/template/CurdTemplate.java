@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.walkerljl.commons.Message;
 import org.walkerljl.commons.auth.Authentication;
-import org.walkerljl.commons.collection.ListUtils;	
+import org.walkerljl.commons.collection.ListUtils;
 import org.walkerljl.commons.collection.MapUtils;
 import org.walkerljl.commons.util.LongUtils;
 import org.walkerljl.commons.util.StringPool;
@@ -234,20 +234,17 @@ public abstract class CurdTemplate<T> extends DataTableTemplate {
 			User currentUser = getCurrentUser();
 			BaseDomain domain = (BaseDomain) t;
 			if (LongUtils.greatThanZero(domain.getId())) {//修改
-				domain.setLastModifyDate(new Date());
+				domain.setModifiedTime(new Date());
 				if (currentUser != null) {
-					domain.setLastModifyUserId(currentUser.getUserId());
-					domain.setLastModifyUserName(currentUser.getUserName());
+					domain.setModifier(currentUser.getUserId());
 				}
 			} else {//新增
 				domain.setStatusType(Status.ENABLED);
-				domain.setCreateDate(new Date());
-				domain.setLastModifyDate(domain.getCreateDate());
+				domain.setCreatedTime(new Date());
+				domain.setModifiedTime(domain.getCreatedTime());
 				if (currentUser != null) {
-					domain.setCreateUserId(currentUser.getUserId());
-					domain.setCreateUserName(currentUser.getUserName());
-					domain.setLastModifyUserId(domain.getCreateUserId());
-					domain.setLastModifyUserName(domain.getCreateUserName());
+					domain.setCreator(currentUser.getUserId());
+					domain.setModifier(domain.getCreator());
 				}
 			}
 		}

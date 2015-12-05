@@ -9,12 +9,45 @@
 	<artifactId>orgwalkerljl-smart-web</artifactId>
 	<packaging>war</packaging>
 
+	<build>
+		<filters>
+			<filter>src/main/resources/profiles/${pfile}</filter>
+		</filters>
+		<finalName>smart-web</finalName>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warName>${project.artifactId}</warName>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<configuration>
+					<warFile>smart-web.war</warFile>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.walkerljl.smart</groupId>
 			<artifactId>orgwalkerljl-smart-mvc</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
-		
+
 	</dependencies>
 </project>

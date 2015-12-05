@@ -1,5 +1,7 @@
 package org.walkerljl.smart.domain.sys;
 
+import org.walkerljl.db.api.annotation.Column;
+import org.walkerljl.db.api.annotation.Entity;
 import org.walkerljl.smart.domain.BaseDomain;
 
 /**
@@ -7,13 +9,15 @@ import org.walkerljl.smart.domain.BaseDomain;
  *
  * @author lijunlin
  */
+@Entity("sys_config")
 public class SysConfig extends BaseDomain {
 
 	private static final long serialVersionUID = 1L;
 	
 	/** 配置Key*/
+	@Column("key")
 	private String key;
-	/** 配置Value*/
+	@Column("value")/** 配置Value*/
 	private String value;
 	
 	/**

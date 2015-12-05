@@ -9,7 +9,8 @@ import org.walkerljl.smart.domain.BaseDomain;
 
 /**
  * SysLog
- * @author lijunlin<walkerljl@qq.com>
+ * 
+ * @author lijunlin
  */
 public class SysLog extends BaseDomain {
 

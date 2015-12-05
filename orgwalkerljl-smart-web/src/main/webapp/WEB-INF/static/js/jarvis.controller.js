@@ -1,26 +1,19 @@
 /**
  * JARVIS.CONTROLLER组件
- * 
- * @author lijunlin<walkerljl@qq.com>
+ * @author cdlijunlin
  */
 JARVIS.registerNamespace("JARVIS.CONTROLLER");
 (function() {
 	
-	/**
-	 * dataTable对象
-	 */
+	//dataTable对象
 	JARVIS.CONTROLLER.datatableIdentifer;
 	JARVIS.CONTROLLER.checkboxIdentifer;
 	JARVIS.CONTROLLER.checkboxItemIdentifer;
 	
-	/**
-	 * 表单Form名称
-	 */
+	//表单Form名称
 	JARVIS.CONTROLLER.editFormName;
 	
-	/**
-	 * 按钮条执行方法
-	 */
+	//按钮条执行方法
 	JARVIS.CONTROLLER.addMethod;
 	JARVIS.CONTROLLER.editMethod;
 	JARVIS.CONTROLLER.viewMethod;
@@ -30,14 +23,10 @@ JARVIS.registerNamespace("JARVIS.CONTROLLER");
 	JARVIS.CONTROLLER.delMethod;
 	JARVIS.CONTROLLER.physicsDelMethod;
 	
-	/**
-	 * 校验需要编辑的记录
-	 */
+	//校验需要编辑的记录
 	JARVIS.CONTROLLER.validateSave;
 	
-	/**
-	 * 组件初始化
-	 */
+	//组件初始化
 	JARVIS.CONTROLLER.init = function() {
 		//初始化dataTable对象
 		JARVIS.CONTROLLER.checkboxIdentifer = JARVIS.objectIdentifer + "_chk";
@@ -56,23 +45,17 @@ JARVIS.registerNamespace("JARVIS.CONTROLLER");
 		JARVIS.CONTROLLER.physicsDelMethod = "JARVIS.CONTROLLER.defaultPhysicsDelMethod();";
 	};
 	
-	/**
-	 * 全选/反选
-	 */
+	//全选/反选
 	JARVIS.CONTROLLER.checkAll = function() {
 		JARVIS.checkAll('#' + JARVIS.CONTROLLER.checkboxIdentifer, JARVIS.CONTROLLER.checkboxItemIdentifer);
 	};
 	
-	/**
-	 * 首页
-	 */
+	//首页
 	JARVIS.CONTROLLER.index = function() {
 		JARVIS.replace(JARVIS.CONTROLLER.URL.index);
 	};
 
-	/**
-	 * 新增
-	 */
+	//新增
 	JARVIS.CONTROLLER.add = function() {
 		eval(JARVIS.CONTROLLER.addMethod);
 	};
@@ -80,14 +63,11 @@ JARVIS.registerNamespace("JARVIS.CONTROLLER");
 		JARVIS.loadPageToMainFrame(JARVIS.CONTROLLER.URL.add, {});
 	};
 	
-	/**
-	 * 修改
-	 */
-	JARVIS.CONTROLLER.edit = function(key) {
-		JARVIS.post(JARVIS.CONTROLLER.URL.edit, {id:key}, function(){
-			window.location.href = JARVIS.CONTROLLER.URL.index;
-		});
+	//修改
+	JARVIS.CONTROLLER.edit = function() {
+		eval(JARVIS.CONTROLLER.editMethod);
 	};
+	//ajax方式提交
 	JARVIS.CONTROLLER.defaultEditMethod = function() {
 		var idsStr = JARVIS.getCheckedValues(JARVIS.CONTROLLER.checkboxItemIdentifer);
 		if (idsStr != "") {
@@ -102,9 +82,7 @@ JARVIS.registerNamespace("JARVIS.CONTROLLER");
 		}
 	};
 
-	/**
-	 * 保存
-	 */
+	//保存
 	JARVIS.CONTROLLER.save = function() {
 		var isValidSaveMethod = JARVIS.isValidText(JARVIS.CONTROLLER.validateSave);
 		if (!isValidSaveMethod || (isValidSaveMethod && eval(JARVIS.CONTROLLER.validateSave))) {
@@ -117,9 +95,7 @@ JARVIS.registerNamespace("JARVIS.CONTROLLER");
 		}
 	};
 	
-	/**
-	 * 详细
-	 */
+	//详细
 	JARVIS.CONTROLLER.view = function() {
 		eval(JARVIS.CONTROLLER.viewMethod);
 	};
@@ -137,9 +113,7 @@ JARVIS.registerNamespace("JARVIS.CONTROLLER");
 		}
 	};
 	
-	/**
-	 * 检索
-	 */
+	//检索
 	JARVIS.CONTROLLER.search = function() {
 		eval(JARVIS.CONTROLLER.searchMethod);
 	};
@@ -147,9 +121,7 @@ JARVIS.registerNamespace("JARVIS.CONTROLLER");
 		JARVIS.TABLE.resetTable(JARVIS.TABLE.dataTableObject, true);
 	};
 	
-	/**
-	 * 启用
-	 */
+	//启用
 	JARVIS.CONTROLLER.enable = function() {
 		eval(JARVIS.CONTROLLER.enableMethod);
 	};
@@ -157,9 +129,7 @@ JARVIS.registerNamespace("JARVIS.CONTROLLER");
 		JARVIS.CONTROLLER.modifyStatus(JARVIS.STATUS_ENABLED);
 	};
 	
-	/**
-	 * 停用
-	 */
+	//停用
 	JARVIS.CONTROLLER.disable = function() {
 		eval(JARVIS.CONTROLLER.disableMethod);
 	};
@@ -167,9 +137,7 @@ JARVIS.registerNamespace("JARVIS.CONTROLLER");
 		JARVIS.CONTROLLER.modifyStatus(JARVIS.STATUS_DISABLED);
 	};
 	
-	/**
-	 * 删除
-	 */
+	//删除
 	JARVIS.CONTROLLER.del = function() {
 		eval(JARVIS.CONTROLLER.delMethod);
 	};
@@ -177,9 +145,7 @@ JARVIS.registerNamespace("JARVIS.CONTROLLER");
 		JARVIS.CONTROLLER.modifyStatus(JARVIS.STATUS_DELETED);
 	};
 	
-	/**
-	 * 更新状态
-	 */
+	//更新状态
 	JARVIS.CONTROLLER.modifyStatus = function(status) {
 		var ids = JARVIS.getCheckedValues(JARVIS.CONTROLLER.checkboxItemIdentifer);
 		if (ids != "") {
@@ -196,16 +162,12 @@ JARVIS.registerNamespace("JARVIS.CONTROLLER");
 		}
 	};
 	
-	/**
-	 * 物理删除
-	 */
-	JARVIS.CONTROLLER.physicsDel = function(keys) {
-		eval(JARVIS.CONTROLLER.physicsDelMethod(keys));
-	};
+	//物理删除
 	JARVIS.CONTROLLER.physicsDel = function() {
-		eval(JARVIS.CONTROLLER.physicsDel(JARVIS.getCheckedValues(JARVIS.CONTROLLER.checkboxItemIdentifer)));
+		eval(JARVIS.CONTROLLER.physicsDelMethod);
 	};
-	JARVIS.CONTROLLER.defaultPhysicsDelMethod = function(ids) {
+	JARVIS.CONTROLLER.defaultPhysicsDelMethod = function() {
+		var ids = JARVIS.getCheckedValues(JARVIS.CONTROLLER.checkboxItemIdentifer);
 		if (ids != "") {
 			if (confirm("确认要执行此操作吗?")) {
 				JARVIS.reqAjax(JARVIS.CONTROLLER.URL.del, {keys : ids, status : status}, true, function(response) {
@@ -223,7 +185,7 @@ JARVIS.registerNamespace("JARVIS.CONTROLLER");
 
 /**
  * JARVIS.CONTROLLER.URL 组件
- * @author lijunlin<walkerljl@qq.com>
+ * @author cdlijunlin
  */
 JARVIS.registerNamespace("JARVIS.CONTROLLER.URL");
 (function(){
@@ -269,11 +231,3 @@ JARVIS.registerNamespace("JARVIS.CONTROLLER.URL");
 		return JARVIS.contextPath + JARVIS.currentUrl + methodUrl;
 	};
 })();
-
-/**
- * 页面初始化
- */
-$(document).ready(function() {
-	JARVIS.CONTROLLER.URL.init();
-	JARVIS.CONTROLLER.init();
-});

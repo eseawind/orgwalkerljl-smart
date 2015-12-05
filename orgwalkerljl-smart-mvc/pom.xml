@@ -18,6 +18,10 @@
 			<groupId>org.walkerljl.sso</groupId>
 			<artifactId>orgwalkerljl-sso-sdk</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.walkerljl.commons</groupId>
+			<artifactId>orgwalkerljl-commons-json</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -35,9 +39,10 @@
 			<groupId>velocity</groupId>
 			<artifactId>velocity-dep</artifactId>
 		</dependency>
+
 		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
 		</dependency>
 	</dependencies>
 </project>

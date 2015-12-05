@@ -1,7 +1,6 @@
 /**
  * JARVIS组件核心
- * 
- * @author lijunlin<walkerljl@qq.com>
+ * @author cdlijunlin
  */
 //定义JS命名空间，防止js冲突
 var Namespace = Namespace||new Object();
@@ -13,15 +12,14 @@ Namespace.register("JARVIS");
 		Namespace.register(namespace);
 	};
 	
-	JARVIS.systemName = "";
+	JARVIS.systemName = "统一身份系统";
 	JARVIS.contextPath = "";
 	JARVIS.currentUrl = "";
 	JARVIS.objectIdentifer = "";
 	JARVIS.mainContent = "main-content";
-	JARVIS.RESPONSE_STATUS_KEY = "status";
-	JARVIS.RESPONSE_MESSAGE_KEY = "msg";
-	JARVIS.RESPONSE_DATA_KEY = "body";
-	JARVIS.ssoLoginAddress;
+	JARVIS.RESPONSE_STATUS_KEY = "REQ_FLAG";
+	JARVIS.RESPONSE_MESSAGE_KEY = "REQ_MSG";
+	JARVIS.RESPONSE_DATA_KEY = "REQ_DATA";
 	
 	/** 启用状态*/
 	JARVIS.STATUS_ENABLED = "1";
@@ -41,10 +39,10 @@ Namespace.register("JARVIS");
 	},
 	
 	//动态加载页面
-	JARVIS.loadPage = function(url, params, target) {
+	JARVIS.loadPage = function(url, data, target) {
 		JARVIS.mask();
-		$.post(url, params, function(html) {
-			$("#" + target).html(html);
+		$.post(url, data, function(html) {
+			$("#"+target).html(html);
 			JARVIS.unmask();
 		});
 	};
@@ -101,43 +99,27 @@ Namespace.register("JARVIS");
 		return obj == null || obj == "undefined";
 	};
 	
-	JARVIS.post = function(url, data, successCallback) {
+	//ajax提交表单
+	JARVIS.postAjaxForm = function(form, callback) {
+		JARVIS.mask();
+		var href = $(form).attr("action");
 		$.ajax({
-			type : 'POST',
-			url : url + ".json",
-			data : data,
-			dataType : 'json',
+			url : href+".json",
+			type : $(form).attr("method"),
+			data : $(form).serialize(),
+			dataType : "json",
 			success : function(response) {
-				if (response[JARVIS.RESPONSE_DATA_KEY] == "notLogin") {
-					window.location.href = JARVIS.ssoLoginAddress;
+				JARVIS.unmask();
+				if (typeof(callback) == "function") {
+					callback(response);
 				} else {
 					alert(response[JARVIS.RESPONSE_MESSAGE_KEY]);
-					if (typeof(successCallback) == "function") {
-						successCallback(response);
-					}
 				}
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
+				JARVIS.unmask();
 				alert("操作失败");
 			}
-		});
-	};
-	
-	JARVIS.commonMvcSuccessCallback = function(response, callback) {
-		alert(JARVIS.RESPONSE_MESSAGE_KEY);
-		if (response[JARVIS.RESPONSE_STATUS_KEY]) {
-			callback;
-		}
-	};
-	
-	JARVIS.ajax = function(type, url, data, dataType, successCallback, errorCallback) {
-		$.ajax({
-			type: type,
-			url: url,
-			data: data,
-			success: callback,
-			dataType: dataType,
-			error : errorCallback
 		});
 	};
 	
@@ -215,6 +197,8 @@ Namespace.register("JARVIS");
 	//初始化页面
 	JARVIS.initPage = function() {
 		try {
+			JARVIS.CONTROLLER.init();
+			JARVIS.CONTROLLER.URL.init();
 			//初始化执行通过span定义的函数;
 			$("SPAN.script").each(function(i,obj) {
 				eval($(obj).attr("page-load"));
@@ -233,7 +217,5 @@ $(document).ready(function() {
 	JARVIS.contextPath = $("#contextPath").val();
 	JARVIS.currentUrl = $("#currentUrl").val();
 	JARVIS.objectIdentifer = $("#objectIdentifer").val();
-	JARVIS.systemName = $("#appName").val();
-	JARVIS.ssoLoginAddress = $("#ssoLoginAddress").val();
 	JARVIS.initPage();
 });

@@ -7,6 +7,7 @@ package org.walkerljl.smart.domain;
 
 import java.util.Date;
 
+import org.walkerljl.db.api.annotation.Column;
 import org.walkerljl.smart.enums.Status;
 
 /**
@@ -19,41 +20,39 @@ public class BaseDomain extends Page<Object> {
 	private static final long serialVersionUID = 1L;
 
 	/** 编号*/
+	@Column(key = true, value = "id")
 	private Long id;
 	
 	/** 唯一编号*/
 	private transient String uuid;
 	
 	/** 名称*/
+	@Column("name")
 	private String name;
 	
-	/** 编码*/
-	private String code;
-	
 	/** 备注*/
+	@Column("remark")
     private String remark;
     
-    /** 创建日期*/
-    private Date createDate;
-    
-    /** 创建者id*/
-    private String createUserId;
-    
-    /** 最后修改日期*/
-    private Date lastModifyDate;
-    
-    /** 创建者姓名*/
-    private String createUserName;
-    
-    /** 最后修改者id*/
-    private String lastModifyUserId;
-    
-    /** 最后修改者姓名*/
-    private String lastModifyUserName;
-    
     /** 状态  {@link org.walkerljl.smart.enums.Status}*/
+	@Column("status")
     private transient Integer status;
     
+	/** 创建者*/
+	@Column("creator")
+    private String creator;
+	
+	/** 创建时间*/
+	@Column("created_time")
+    private Date createdTime;
+    
+	@Column("modifier")/** 修改者*/
+    private String modifier;
+	
+	/** 修改时间*/
+	@Column("modified_time")
+    private Date modifiedTime;
+	
     /**
      * 默认构造函数
      */
@@ -109,22 +108,6 @@ public class BaseDomain extends Page<Object> {
 	}
 
 	/**
-	 * 获取编码
-	 * @return
-	 */
-	public String getCode() {
-		return code;
-	}
-
-	/**
-	 * 设置编码
-	 * @param code
-	 */
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	/**
 	 * 获取备注
 	 * @return
 	 */
@@ -141,102 +124,6 @@ public class BaseDomain extends Page<Object> {
 	}
 
 	/**
-	 * 获取创建日期
-	 * @return
-	 */
-	public Date getCreateDate() {
-		return createDate;
-	}
-
-	/**
-	 * 设置创建日期
-	 * @param createDate
-	 */
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
-	/**
-	 * 获取创建者id
-	 * @return
-	 */
-	public String getCreateUserId() {
-		return createUserId;
-	}
-
-	/**
-	 *设置创建者id
-	 * @param createUserId
-	 */
-	public void setCreateUserId(String createUserId) {
-		this.createUserId = createUserId;
-	}
-	
-	/**
-	 * 获取创建者姓名
-	 * @return
-	 */
-	public String getCreateUserName() {
-		return createUserName;
-	}
-
-	/**
-	 * 设置创建者姓名
-	 * @param createUserName
-	 */
-	public void setCreateUserName(String createUserName) {
-		this.createUserName = createUserName;
-	}
-
-	/**
-	 * 获取最后修改时间
-	 * @return
-	 */
-	public Date getLastModifyDate() {
-		return lastModifyDate;
-	}
-
-	/**
-	 * 设置最后修改时间
-	 * @param lastModifyDate
-	 */
-	public void setLastModifyDate(Date lastModifyDate) {
-		this.lastModifyDate = lastModifyDate;
-	}
-
-	/**
-	 * 获取最后修改者id
-	 * @return
-	 */
-	public String getLastModifyUserId() {
-		return lastModifyUserId;
-	}
-
-	/**
-	 * 设置最后修改者id
-	 * @param lastModifyUserId
-	 */
-	public void setLastModifyUserId(String lastModifyUserId) {
-		this.lastModifyUserId = lastModifyUserId;
-	}
-	
-	/**
-	 * 获取最后修改者姓名
-	 * @return
-	 */
-	public String getLastModifyUserName() {
-		return lastModifyUserName;
-	}
-
-	/**
-	 * 设置最后修改者姓名
-	 * @param lastModifyUserName
-	 */
-	public void setLastModifyUserName(String lastModifyUserName) {
-		this.lastModifyUserName = lastModifyUserName;
-	}
-	
-	/**
 	 * 获取状态值
 	 * @return
 	 */
@@ -252,6 +139,70 @@ public class BaseDomain extends Page<Object> {
 		this.status = status;
 	}
 	
+	/**
+	 * 获取创建者
+	 * @return
+	 */
+	public String getCreator() {
+		return creator;
+	}
+
+	/**
+	 * 设置创建者
+	 * @param creator
+	 */
+	public void setCreator(String creator) {
+		this.creator = creator;
+	}
+	
+	/**
+	 * 获取创建时间
+	 * @return
+	 */
+	public Date getCreatedTime() {
+		return createdTime;
+	}
+
+	/**
+	 * 设置创建日期
+	 * @param createdTime
+	 */
+	public void setCreatedTime(Date createdTime) {
+		this.createdTime = createdTime;
+	}
+
+	/**
+	 * 获取修改者
+	 * @return
+	 */
+	public String getModifier() {
+		return modifier;
+	}
+
+	/**
+	 * 设置修改者
+	 * @param modifier
+	 */
+	public void setModifier(String modifier) {
+		this.modifier = modifier;
+	}
+
+	/**
+	 * 获取修改时间
+	 * @return
+	 */
+	public Date getModifiedTime() {
+		return modifiedTime;
+	}
+
+	/**
+	 * 设置修改时间
+	 * @param modifiedTime
+	 */
+	public void setModifiedTime(Date modifiedTime) {
+		this.modifiedTime = modifiedTime;
+	}
+
 	//============== 自定义方法
 	/**
 	 * 是否启用

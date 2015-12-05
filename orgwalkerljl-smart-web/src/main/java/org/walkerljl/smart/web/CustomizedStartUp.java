@@ -5,9 +5,13 @@
  */
 package org.walkerljl.smart.web;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
+import org.walkerljl.commons.collection.CollectionUtils;
 import org.walkerljl.smart.dao.sys.SysConfigDao;
+import org.walkerljl.smart.domain.sys.SysConfig;
 import org.walkerljl.smart.mvc.init.DefaultStartUp;
 
 /**
@@ -24,6 +28,13 @@ public class CustomizedStartUp extends DefaultStartUp {
 	}
 	@Override
 	public void subProcess() {
-		sysConfigDao.selectListByKeys(1L);
+		for (int i = 0; i < 10; i++) {
+			List<SysConfig> sysConfigs = sysConfigDao.selectListByKeys(1L, 2L, 3L);
+			if (CollectionUtils.isNotEmpty(sysConfigs)) {
+				for (SysConfig sysConfig : sysConfigs) {
+					System.out.println(sysConfig.toString());
+				}
+			}
+		}
 	}
 }

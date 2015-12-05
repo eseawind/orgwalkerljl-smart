@@ -467,8 +467,7 @@ public abstract class BaseController extends VelocitySupport {
 		}
 		User user = getCurrentUser();
 		if (user != null) {
-			baseDomain.setCreateUserId(user.getUserId());
-			baseDomain.setCreateUserName(user.getUserName());
+			baseDomain.setCreator(user.getCreator());
 		}
 	}
 	
@@ -478,13 +477,11 @@ public abstract class BaseController extends VelocitySupport {
 		}
 		User user = getCurrentUser();
 		if (user != null) {
-			baseDomain.setCreateUserId(user.getUserId());
-			baseDomain.setCreateUserName(user.getUserName());
-			baseDomain.setLastModifyUserId(baseDomain.getCreateUserId());
-			baseDomain.setLastModifyUserName(baseDomain.getCreateUserName());
+			baseDomain.setCreator(user.getCreator());
+			baseDomain.setModifier(baseDomain.getCreator());
 		}
-		baseDomain.setCreateDate(new Date());
-		baseDomain.setLastModifyDate(baseDomain.getCreateDate());
+		baseDomain.setCreatedTime(new Date());
+		baseDomain.setModifiedTime(baseDomain.getCreatedTime());
 		baseDomain.setStatusType(Status.ENABLED);
 	}
 	
