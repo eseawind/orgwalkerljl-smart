@@ -7,7 +7,8 @@ package org.walkerljl.smart.domain;
 
 /**
  * DataTable插件分页参数
- * @author lijunlin<walkerljl@qq.com>
+ * 
+ * @author lijunlin
  */
 public abstract class JqueryDatatableBaseDomain extends BaseDomain {
 

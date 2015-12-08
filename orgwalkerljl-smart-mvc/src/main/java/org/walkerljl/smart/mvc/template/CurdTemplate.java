@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.walkerljl.commons.Message;
 import org.walkerljl.commons.auth.Authentication;
+import org.walkerljl.commons.collection.ArraysUtils;
 import org.walkerljl.commons.collection.ListUtils;
 import org.walkerljl.commons.collection.MapUtils;
 import org.walkerljl.commons.util.LongUtils;
@@ -32,7 +33,7 @@ import org.walkerljl.smart.mvc.button.CurdTemplateDefaultButtonBar;
 import org.walkerljl.smart.mvc.enums.EditType;
 import org.walkerljl.smart.mvc.security.Button;
 import org.walkerljl.smart.mvc.security.ButtonBar;
-import org.walkerljl.smart.service.DefaultBaseService;
+import org.walkerljl.smart.service.BaseService;
 
 /**
  * 基于简单增、删、改、查的Template
@@ -96,9 +97,9 @@ public abstract class CurdTemplate<T> extends DataTableTemplate {
 	 * @return
 	 */
 	@RequestMapping(value = "", method = {RequestMethod.GET})
-	public ModelAndView index(T t) {
+	public ModelAndView index() {
 		ViewResult viewResult = getIndexModel();
-		viewResult.addModel(DATA_MODEL_KEY, processSelectPage(t));
+		//viewResult.addModel(DATA_MODEL_KEY, processSelectPage(t));
 		if (mvcSupporter.isLoadButtonBar()) {
 			//设置按钮条
 			String currentUserId = getCurrentUserId();
@@ -248,7 +249,7 @@ public abstract class CurdTemplate<T> extends DataTableTemplate {
 				}
 			}
 		}
-		Message message = Message.create(getService().saveOrUpdate(t, null));
+		Message message = Message.create(getService().saveOrUpdate(t, null) > 0);
 		return toJSON(null, message.result(), message.getBody());
 	}
 	
@@ -260,8 +261,24 @@ public abstract class CurdTemplate<T> extends DataTableTemplate {
 	@Authentication(code="delete")
 	@RequestMapping(value = "/delete", method = {RequestMethod.POST})
 	public ModelAndView delete(String ids) {
-		Message message = processDelete(StringUtils.splitToLongList(ids, ","));
+		Message message = processDelete();
 		return toJSON(null, message.result(), message.getBody());
+	}
+	
+	private Long[] toLongArray(String ids) {
+		if (StringUtils.isEmpty(ids)) {
+			return null;
+		}
+		String[] idItems = ids.split(",");
+		int idItemsLength = ArraysUtils.size(idItems);
+		if (idItemsLength == 0) {
+			return null;
+		}
+		Long[] longArray = new Long[idItemsLength];
+		for (int i = 0; i < idItemsLength; i++) {
+			longArray[i] = Long.parseLong(idItems[i]);
+		}
+		return longArray;
 	}
 	
 	/**
@@ -269,7 +286,7 @@ public abstract class CurdTemplate<T> extends DataTableTemplate {
 	 * @param ids
 	 * @return
 	 */
-	protected Message processDelete(List<Long> ids) {
+	protected Message processDelete(Long... ids) {
 		return Message.create(getService().deleteByKeys(ids) > 0);
 	}
 	
@@ -281,7 +298,7 @@ public abstract class CurdTemplate<T> extends DataTableTemplate {
 	@Authentication(code="modifystatus")
 	@RequestMapping(value = "/modifyStatus", method = {RequestMethod.POST})
 	public ModelAndView modifyStatus(String ids, Integer status) {
-		Message message = Message.create(getService().updateStatusByKeys(StringUtils.splitToLongList(ids, ","), Status.getType(status)) > 0);
+		Message message = null;//Message.create(getService().updateStatusByKeys(toLongArray(ids), status) > 0);
 		return toJSON(null, message.result(), message.getBody());
 	}
 	
@@ -392,5 +409,5 @@ public abstract class CurdTemplate<T> extends DataTableTemplate {
 	 * 获取业务接口对象
 	 * @return
 	 */
-	public abstract DefaultBaseService<T, Long> getService();
+	public abstract BaseService<T, Long> getService();
 }

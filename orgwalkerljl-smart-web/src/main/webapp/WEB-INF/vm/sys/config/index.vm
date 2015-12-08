@@ -1,0 +1,13 @@
+#parse("common/index/head.vm")
+
+<th role="columnheader" tabindex="0" aria-controls="table_report" rowspan="1" colspan="1">ID</th>
+<th role="columnheader" tabindex="0" aria-controls="table_report" rowspan="1" colspan="1">名称</th>
+<th role="columnheader" tabindex="0" aria-controls="table_report" rowspan="1" colspan="1">Key</th>
+<th role="columnheader" tabindex="0" aria-controls="table_report" rowspan="1" colspan="1">Value</th>
+
+#parse("common/index/bottom.vm")
+
+##定义该模块初始化函数
+<SPAN class="script" page-load="sys.config.init();" firstInit="false"></SPAN>
+##导入js
+<script src="$!{localStaticRes}/js/sys/config.js?v=$!{v}"></script>

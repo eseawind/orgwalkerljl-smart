@@ -1,0 +1,33 @@
+##无权限访问页面
+
+##面包屑导航条
+<div id="breadcrumbs">
+	<ul class="breadcrumb">
+		<li class="active">权限认证失败</li>
+	</ul>
+</div>
+<!--breadcrumb end -->
+
+<div id="page-content" class="clearfix">
+	<div class="row-fluid">
+	<!-- PAGE CONTENT BEGINS HERE -->
+		<div class="error-container">
+			<div class="well">
+				<h1 class="grey lighter smaller">
+					<span class="blue bigger-125"><i class="icon-cogs"></i> </span> 权限认证失败
+				</h1>
+				<hr>
+				
+				<div class="space"></div>
+				<div>
+					<h4 class="lighter smaller"><strong>您没有权限访问该资源，如有需要请与管理员联系。</strong></h4>
+					<ul class="nav">
+						<li><i class="icon-hand-right blue"></i> 发送邮件给我们&lt;$!{mails}&gt;</li>
+					</ul>
+				</div>
+				<hr>
+				<div class="space"></div>
+			</div>
+		</div>
+	 </div><!--/row-->
+</div>

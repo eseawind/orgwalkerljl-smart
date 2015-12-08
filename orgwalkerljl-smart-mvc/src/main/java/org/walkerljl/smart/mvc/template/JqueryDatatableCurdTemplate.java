@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.walkerljl.smart.service.DefaultBaseService;
+import org.walkerljl.smart.service.BaseService;
 import org.walkerljl.smart.service.JqueryDatatableBaseService;
 
 /**
@@ -17,7 +17,7 @@ public abstract class JqueryDatatableCurdTemplate<T> extends CurdTemplate<T> {
 	/**
 	 * 实现父类的getService
 	 */
-	public DefaultBaseService<T, Long> getService() {
+	public BaseService<T, Long> getService() {
 		return getJqueryDatatableBaseService();
 	}
 

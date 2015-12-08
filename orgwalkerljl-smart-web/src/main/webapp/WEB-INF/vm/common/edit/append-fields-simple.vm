@@ -1,0 +1,12 @@
+##附加属性-简单
+<tr>
+	<td width="100px;">备注：</td>
+	<td colspan="3">
+		#if($!{editType} == "add" || $!{editType} == "edit") 
+		<textarea id="remark" name="remark" style="width:80%;height:50px;" class="required" 
+			maxlength="200">#if($!{editType} == "edit")$!{model.remark}#end</textarea>
+		#elseif($!{editType} == "view")
+			$!{model.remark}
+		#end   			
+	</td>
+</tr>

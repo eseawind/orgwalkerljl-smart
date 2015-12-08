@@ -1,9 +1,0 @@
-<footer class="footer ">
-  <div class="container">
-    <div class="row footer-bottom">
-      <ul class="list-inline text-center">
-        <li><a href="//walkerljl.org" target="_blank">$!{appName}</a></li><li>www.walkerljl.org</li>
-      </ul>
-    </div>
-  </div>
-</footer>

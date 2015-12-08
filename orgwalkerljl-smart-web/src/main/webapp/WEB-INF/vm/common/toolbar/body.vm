@@ -1,0 +1,3 @@
+#foreach($button in $!{buttonBar})
+	$!{button.body}
+#end

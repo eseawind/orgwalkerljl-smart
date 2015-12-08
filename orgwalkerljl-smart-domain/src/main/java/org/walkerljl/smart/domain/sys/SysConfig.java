@@ -2,7 +2,7 @@ package org.walkerljl.smart.domain.sys;
 
 import org.walkerljl.db.api.annotation.Column;
 import org.walkerljl.db.api.annotation.Entity;
-import org.walkerljl.smart.domain.BaseDomain;
+import org.walkerljl.smart.domain.JqueryDatatableBaseDomain;
 
 /**
  * 系统配置
@@ -10,7 +10,7 @@ import org.walkerljl.smart.domain.BaseDomain;
  * @author lijunlin
  */
 @Entity("sys_config")
-public class SysConfig extends BaseDomain {
+public class SysConfig extends JqueryDatatableBaseDomain {
 
 	private static final long serialVersionUID = 1L;
 	

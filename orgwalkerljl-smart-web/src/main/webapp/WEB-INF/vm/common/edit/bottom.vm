@@ -1,0 +1,10 @@
+		</tbody>
+	</table>
+</form>
+##页面底部
+<div class="textC m10" style="text-align:center;">
+	<a href="$!{contextPath}$!{currentUrl}/" class="btn btn-primary btn-large icon-circle-arrow-left" id="back">返回列表</a>
+	#if ($!{editType} == "add" || $!{editType} == "edit") 
+		<a href="javascript:;" onclick="JARVIS.CONTROLLER.save();" class="btn btn-primary btn-large icon-save">保存</a>
+	#end
+</div>

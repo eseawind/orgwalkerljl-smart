@@ -13,7 +13,7 @@ import org.walkerljl.smart.service.JqueryDatatableBaseService;
  *
  * @author lijunlin
  */
-public abstract class JqueryDatatableBaseServiceImpl<T, KEY extends Serializable> extends DefaultBaseServiceImpl<T, KEY> implements JqueryDatatableBaseService<T, KEY> {
+public abstract class JqueryDatatableBaseServiceImpl<T, KEY extends Serializable> extends BaseServiceImpl<T, KEY> implements JqueryDatatableBaseService<T, KEY> {
 
 	/** dataTable分页插件,响应次数Key*/
 	private static final String DATATABLE_SECHO_KEY = "sEcho";

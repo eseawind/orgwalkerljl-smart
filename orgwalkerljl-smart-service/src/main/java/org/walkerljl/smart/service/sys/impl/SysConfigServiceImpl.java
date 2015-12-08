@@ -3,7 +3,7 @@ package org.walkerljl.smart.service.sys.impl;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-import org.walkerljl.smart.dao.DefaultBaseDao;
+import org.walkerljl.smart.dao.BaseDao;
 import org.walkerljl.smart.dao.sys.SysConfigDao;
 import org.walkerljl.smart.domain.sys.SysConfig;
 import org.walkerljl.smart.service.impl.JqueryDatatableBaseServiceImpl;
@@ -20,7 +20,7 @@ public class SysConfigServiceImpl extends JqueryDatatableBaseServiceImpl<SysConf
 	@Resource private SysConfigDao sysConfigDao;
 	
 	@Override
-	public DefaultBaseDao<SysConfig, Long> getDao() {
+	public BaseDao<SysConfig, Long> getDao() {
 		return sysConfigDao;
 	}
 }

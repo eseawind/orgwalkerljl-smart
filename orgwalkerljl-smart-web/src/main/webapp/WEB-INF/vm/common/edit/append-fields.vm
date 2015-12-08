@@ -1,0 +1,23 @@
+##附加属性
+#parse("common/edit/append-fields-simple.vm")
+
+#if($!{editType} == "view")
+ <tr>
+ 	<td width="100px;">创建者Id：</td>
+ 	<td>$!{model.lastModifyUserId}</td>
+	<td width="100px;">创建者姓名：</td>
+	<td>$!{model.lastModifyUserName}</td>
+</tr>
+<tr>
+	<td width="100px;">最近更新者Id：</td>
+	<td>$!{model.createUserId}</td>
+	<td width="100px;">最近更新者姓名：</td>
+	<td>$!{model.createUserName}</td>	   		
+</tr>
+<tr>
+	<td width="100px;">创建日期：</td>
+	<td>$utils.dateFormatDateTime($!{model.createDate})</td>
+	<td width="100px;">最近更新日期：</td>
+	<td>$utils.dateFormatDateTime($!{model.lastModifyDate})</td>
+</tr>		  
+#end

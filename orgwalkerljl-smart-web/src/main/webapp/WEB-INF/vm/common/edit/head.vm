@@ -1,0 +1,22 @@
+<div id="breadcrumbs">
+	<ul class="breadcrumb">
+		<li><i class="icon-globe" style="font-size:18px;"></i><a href="#" onclick="JARVIS.CONTROLLER.index();">$!{pageTitle}</a><span class="divider"><i class="icon-angle-right"></i></span></li>
+		<li><i class="icon-edit" style="font-size:18px;"></i>
+			<a href="#">
+				#if($!{editType} == "add")
+					新增
+				#elseif($!{editType} == "edit")
+					编辑
+				#else
+					详细
+				#end
+			</a>
+		</li>
+	</ul>
+</div>
+<form name="$!{editForm}" action="$!{contextPath}$!{currentUrl}/save" method="POST" data-type="json">
+#if ($!{editType} == "edit") 
+	<input type="hidden" id="id" name="id" value="$!{model.id}"/>
+#end
+<table width="500px" border="0" cellpadding="3" cellspacing="3" class="table table-striped table-bordered table-hover">
+		<tbody role="alert" aria-live="polite" aria-relevant="all"> 

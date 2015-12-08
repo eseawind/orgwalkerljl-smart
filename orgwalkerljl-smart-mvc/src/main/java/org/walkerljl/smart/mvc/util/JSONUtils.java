@@ -15,6 +15,8 @@ import org.walkerljl.commons.exception.AppException;
 import org.walkerljl.commons.io.StreamUtils;
 import org.walkerljl.commons.util.HtmlUtils;
 import org.walkerljl.commons.util.StringUtils;
+import org.walkerljl.log.Logger;
+import org.walkerljl.log.LoggerFactory;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -30,6 +32,8 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
  */
 public class JSONUtils {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(JSONUtils.class);
+	
 	/**
 	 * 将Java对象转成JSON字符串
 	 * @param object
@@ -174,8 +178,11 @@ public class JSONUtils {
 		}
 		serializer.write(context);
 		try {
-			String json = sw.toString();
-			out.print(HtmlUtils.escapeJson(json));
+			String json = HtmlUtils.escapeJson(sw.toString());
+			if (LOGGER.isDebugEnabled()) {
+				LOGGER.debug(json);
+			}
+			out.print(json);
 			out.flush();
 		} catch (Exception ex) {
 			throw new AppException(ex);

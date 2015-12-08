@@ -22,6 +22,12 @@ public class SysConfigController extends JqueryDatatableCurdTemplate<SysConfig> 
 
 	@Resource private SysConfigService sysConfigService;
 	
+	public SysConfigController() {
+		setTemplateBasePath("/sys/config");
+		setObjectIdentifer("sysConfig");
+		setCurrentUrl("/sys/config");
+	}
+	
 	@Override
 	public JqueryDatatableBaseService<SysConfig, Long> getJqueryDatatableBaseService() {
 		return sysConfigService;

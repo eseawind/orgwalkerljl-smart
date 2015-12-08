@@ -1,7 +1,0 @@
-#parse("common/pagination/toolbar-nofunction.vm")
-<script>	
-	var gotoPage = function(pageNo) {
-		$("#currentPage").val(pageNo);
-		$("#" + $("#formName").val()).submit();
-	};
-</script>
